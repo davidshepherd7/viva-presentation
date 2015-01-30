@@ -47,12 +47,86 @@
   \titlepage
 \end{frame}
 
-\begin{frame}{first}
+\begin{frame}{How good is GI}
 
   \begin{itemize}
-  \item hi
+  \item Plenty of work on coming up with GI methods for micromagnetics
+  \item GI integration said to be very useful in other areas (e.g. ??ds)
+  \item Plenty of claims that GI is important
+  \item But no numerical evidence! (i.e. comparisons of overall accuracy of
+    GI methods vs normal).
+    % ??ds check gI on spheres paper
   \end{itemize}
 
+\end{frame}
+
+\begin{frame}{How good is GI}
+
+  So:
+  \begin{itemize}
+  \item Experimented with IMR vs TR vs BDF2 for two problems with
+    known analytical solutions.
+  \item Found that TR and IMR are very similar, but BDF2 is quite a bit worse
+  \item However, due to some unique properties of these analytical
+    solutions TR had some GI properties at times...
+  \item Unfortunately no time to experiment with comparisons for full MM
+    problem with magnetostatics (since full IMR GI method not finished).
+  \end{itemize}
+  
+\end{frame}
+
+
+\begin{frame}{Making IMR (GI) more efficent}
+
+  \begin{itemize}
+  \item Quite a few papers on IMR in micromagnetics
+  \item But:
+    \begin{itemize}
+    \item using simple and inefficent non-linear solvers
+    \item no adaptivity
+    \item Often idealised problems (no magnetostatics, simple cubeoids)
+    \end{itemize}
+  \end{itemize}
+\end{frame}
+
+\begin{frame}{Making IMR (GI) more efficent}
+
+  So:
+  \begin{itemize}
+  \item Created better non-linear solver (incl. internal linear solver)
+    % ??ds overstating it?
+  \item Created adaptive IMR algorithm
+  \end{itemize} 
+  
+\end{frame}
+
+
+\begin{frame}{Do we need implicit methods}
+
+  \begin{itemize}
+  \item Little research about when implicit methods are needed in micromagnetics
+  \item Some papers say that implicit methods are much more efficent
+  \item But many people use explicit methods without compliants
+  \item Stiffness only studied for macrospin models and mumag4 problem
+  \item Some mixed ideas about where stiffness comes from (precession vs
+    damping timescales? exchange vs magnetostatics propogation timescales?
+    discretisation?) (not in publications but my impression from talking
+    to people)
+  \end{itemize}
+
+\end{frame}
+
+\begin{frame}{Do we need implicit methods }
+
+  So:
+  \begin{itemize}
+  \item Tried to study more general origins of stiffness.
+  \item Found that you can explain observed stiffness with discretisation
+    alone.
+  \item Characterised discretisation lengths where stiffness occurs (for
+    FEM and FEM/BEM methods).
+  \end{itemize} 
+  
 \end{frame}
 
 \end{document}
