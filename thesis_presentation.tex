@@ -1,0 +1,63 @@
+\documentclass[18pt]{beamer}
+
+% Add some reduced spacing itemize enviroments
+\usepackage{paralist}
+
+% Increase spacing in lists
+\newlength{\wideitemsep}
+\setlength{\wideitemsep}{\itemsep}
+\addtolength{\wideitemsep}{5pt}
+\let\olditem\item
+\renewcommand{\item}{\setlength{\itemsep}{\wideitemsep}\olditem}
+
+
+% Hacky fix to bug in beamer
+\let\beameritemnestingprefix\hbox{}
+
+
+% University of Manchester colours
+\DefineNamedColor{named}{uompurple}{rgb}{0.427,0,0.616}
+\usecolortheme[named={uompurple}]{structure}
+
+% Theme (for shapes etc.)
+\usetheme{Madrid}
+
+% remove navigation symbols
+\setbeamertemplate{navigation symbols}{}
+
+% Italic captions
+\usepackage[textfont=it]{caption}
+
+% small footnotes
+\usepackage{setspace}
+
+
+
+\title[??ds]{??ds}
+
+\author[David Shepherd]{David Shepherd}
+
+\institute[UoM]{The University of Manchester}
+
+
+
+\begin{document}
+
+\begin{frame}
+  \titlepage
+\end{frame}
+
+\begin{frame}{first}
+
+  \begin{itemize}
+  \item hi
+  \end{itemize}
+
+\end{frame}
+
+\end{document}
+
+%%% Local Variables:
+%%% mode: latex
+%%% TeX-master: true
+%%% End:
