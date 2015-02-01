@@ -33,12 +33,13 @@
 
 
 
-\title[??ds]{??ds}
+\title{Numerical methods for micromagnetics}
 
 \author[David Shepherd]{David Shepherd}
 
 \institute[UoM]{The University of Manchester}
 
+\date{2nd February 2015}
 
 
 \begin{document}
@@ -47,36 +48,34 @@
   \titlepage
 \end{frame}
 
-\begin{frame}{How good is GI}
+\begin{frame}{Overall goal}
+  \begin{center}
+    {\huge Goal: Use better numerical methods to speed up calculations.}
+  \end{center}
 
   \begin{itemize}
-  \item Plenty of work on coming up with GI methods for micromagnetics
-  \item GI integration said to be very useful in other areas (e.g. ??ds)
-  \item Plenty of claims that GI is important
-  \item But no numerical evidence! (i.e. comparisons of overall accuracy of
-    GI methods vs normal).
-    % ??ds check gI on spheres paper
+  \item Create new (better) numerical methods
+    % obviously the main way to do this is to come up with new numerical
+    % methods.
+  \item Characterise cases where a given method is better/worse
+    % but also, A lot of the time certain methods will be better for
+    % certain situations but worse for others. We need to know when to use
+    % a method as well.
   \end{itemize}
-
 \end{frame}
 
-\begin{frame}{How good is GI}
-
-  So:
+\begin{frame}{Overview}
   \begin{itemize}
-  \item Experimented with IMR vs TR vs BDF2 for two problems with
-    known analytical solutions.
-  \item Found that TR and IMR are very similar, but BDF2 is quite a bit worse
-  \item However, due to some unique properties of these analytical
-    solutions TR had some GI properties at times...
-  \item Unfortunately no time to experiment with comparisons for full MM
-    problem with magnetostatics (since full IMR GI method not finished).
+  \item Focus on methods that use implicit midpoint rule for time discretisation.
+    % IMR can conserve important properties of the model, hope
+    % will give better overall accuracy + also it's stable.
+  \item Find improvements to existing IMR-based methods.
+  \item Characterise when it is beneficial to use IMR.
   \end{itemize}
-  
 \end{frame}
 
 
-\begin{frame}{Making IMR (GI) more efficent}
+\begin{frame}{Making IMR more efficient}
 
   \begin{itemize}
   \item Quite a few papers on IMR in micromagnetics
@@ -84,34 +83,34 @@
     \begin{itemize}
     \item using simple and inefficent non-linear solvers
     \item no adaptivity
-    \item Often idealised problems (no magnetostatics, simple cubeoids)
     \end{itemize}
   \end{itemize}
 \end{frame}
 
-\begin{frame}{Making IMR (GI) more efficent}
+\begin{frame}{Making IMR more efficent}
 
   So:
   \begin{itemize}
-  \item Created better non-linear solver (incl. internal linear solver)
-    % ??ds overstating it?
   \item Created adaptive IMR algorithm
-  \end{itemize} 
-  
+  \item Created better solver for the discrete problem [caveat: need an
+    effective preconditioner for LLG block].
+  \end{itemize}
+  % these are the main contributions of my thesis
+
 \end{frame}
 
 
-\begin{frame}{Do we need implicit methods}
+
+\begin{frame}{When do we need implicit (stable) methods?}
 
   \begin{itemize}
   \item Little research about when implicit methods are needed in micromagnetics
-  \item Some papers say that implicit methods are much more efficent
-  \item But many people use explicit methods without compliants
-  \item Stiffness only studied for macrospin models and mumag4 problem
-  \item Some mixed ideas about where stiffness comes from (precession vs
-    damping timescales? exchange vs magnetostatics propogation timescales?
-    discretisation?) (not in publications but my impression from talking
-    to people)
+  \item Some papers say that implicit methods are much more efficient, but others use explicit methods without complaints
+  \item Some mixed ideas about where stiffness comes from
+    % (precession vs damping timescales? exchange vs magnetostatics propogation
+    % timescales?
+    % discretisation?) (not in publications but my impression from talking
+    % to people)
   \end{itemize}
 
 \end{frame}
@@ -120,13 +119,52 @@
 
   So:
   \begin{itemize}
-  \item Tried to study more general origins of stiffness.
-  \item Found that you can explain observed stiffness with discretisation
+  \item Studied origins of stiffness in micromagnetics.
+  \item You can explain observed stiffness with discretisation
     alone.
   \item Characterised discretisation lengths where stiffness occurs (for
     FEM and FEM/BEM methods).
-  \end{itemize} 
-  
+  \end{itemize}
+
+\end{frame}
+
+
+
+\begin{frame}{How useful is geometric integration?}
+
+  \begin{itemize}
+  \item Plenty of papers on geometric integration methods for micromagnetics
+  \item GI said to be very useful in other areas
+  \item Plenty of claims that GI is important
+  \item But little numerical evidence! (\ie comparisons of errors)
+  \end{itemize}
+
+\end{frame}
+
+\begin{frame}{How useful is geometric integration?}
+
+  So:
+  \begin{itemize}
+  \item Experimented with a IMR, trapezoid rule and BDF2 for two problems with
+    analytical solutions.
+  \item Found TR and IMR perform similarly, but BDF2 is quite a bit worse.
+  \item However, TR seems to be very close to having the geometric
+    integration properties of IMR.
+    % Both non-dissipative, for sufficiently simple cases they are the same
+    % method, maybe TR with another method of conserving |m| would be GI?
+  \end{itemize}
+
+\end{frame}
+
+
+
+\begin{frame}{Summary}
+  \begin{itemize}
+  \item Created adaptive IMR method
+  \item Created efficient solver
+  \item Characterised when stiffness is an issue in FEM/BEM simulations
+  \item No strong conclusions possible on overall usefulness of GI
+  \end{itemize}
 \end{frame}
 
 \end{document}
