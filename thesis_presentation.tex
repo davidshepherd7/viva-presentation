@@ -57,7 +57,7 @@
   \item Create new (better) numerical methods
     % obviously the main way to do this is to come up with new numerical
     % methods.
-  \item Characterise cases where a given method is better/worse
+  \item Find out when a given method is better/worse
     % but also, A lot of the time certain methods will be better for
     % certain situations but worse for others. We need to know when to use
     % a method as well.
@@ -69,8 +69,8 @@
   \item Focus on methods that use implicit midpoint rule for time discretisation.
     % IMR can conserve important properties of the model, hope
     % will give better overall accuracy + also it's stable.
-  \item Find improvements to existing IMR-based methods.
-  \item Characterise when it is beneficial to use IMR.
+  \item Found improvements to existing IMR-based numerical methods.
+  \item Characterised when it is beneficial to use IMR.
   \end{itemize}
 \end{frame}
 
@@ -81,13 +81,13 @@
   \item Quite a few papers on IMR in micromagnetics
   \item But:
     \begin{itemize}
-    \item using simple and inefficent non-linear solvers
+    \item using simple and inefficient non-linear solvers
     \item no adaptivity
     \end{itemize}
   \end{itemize}
 \end{frame}
 
-\begin{frame}{Making IMR more efficent}
+\begin{frame}{Making IMR more efficient}
 
   So:
   \begin{itemize}
@@ -107,21 +107,20 @@
   \item Little research about when implicit methods are needed in micromagnetics
   \item Some papers say that implicit methods are much more efficient, but others use explicit methods without complaints
   \item Some mixed ideas about where stiffness comes from
-    % (precession vs damping timescales? exchange vs magnetostatics propogation
-    % timescales?
-    % discretisation?) (not in publications but my impression from talking
-    % to people)
+  % (precession vs damping timescales? exchange vs magnetostatics propagation
+  % timescales?
+  % discretisation?) (not in publications but my impression from talking
+  % to people)
   \end{itemize}
 
 \end{frame}
 
-\begin{frame}{Do we need implicit methods }
+\begin{frame}{When do we need implicit (stable) methods?}
 
   So:
   \begin{itemize}
-  \item Studied origins of stiffness in micromagnetics.
-  \item You can explain observed stiffness with discretisation
-    alone.
+  \item Studied origin of stiffness in micromagnetics.
+  \item Can explain stiffness with spatial discretisation alone.
   \item Characterised discretisation lengths where stiffness occurs (for
     FEM and FEM/BEM methods).
   \end{itemize}
@@ -136,7 +135,7 @@
   \item Plenty of papers on geometric integration methods for micromagnetics
   \item GI said to be very useful in other areas
   \item Plenty of claims that GI is important
-  \item But little numerical evidence! (\ie comparisons of errors)
+  \item But little numerical evidence (\textit{i.e.}\ comparisons of errors)!
   \end{itemize}
 
 \end{frame}
@@ -148,8 +147,7 @@
   \item Experimented with a IMR, trapezoid rule and BDF2 for two problems with
     analytical solutions.
   \item Found TR and IMR perform similarly, but BDF2 is quite a bit worse.
-  \item However, TR seems to be very close to having the geometric
-    integration properties of IMR.
+  \item However, for these examples, TR seems to have some GI properties.
     % Both non-dissipative, for sufficiently simple cases they are the same
     % method, maybe TR with another method of conserving |m| would be GI?
   \end{itemize}
