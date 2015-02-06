@@ -66,9 +66,9 @@
 
 \begin{frame}{Overview}
   \begin{itemize}
-  \item Focus on methods that use implicit midpoint rule for time discretisation.
-    % IMR can conserve important properties of the model, hope
-    % will give better overall accuracy + also it's stable.
+  \item I focused on methods that use \emph{implicit midpoint rule} for time discretisation.
+  % IMR can conserve important properties of the model, hope
+  % will give better overall accuracy + also it's stable.
   \item Found improvements to existing IMR-based numerical methods.
   \item Characterised when it is beneficial to use IMR.
   \end{itemize}
@@ -81,11 +81,11 @@
   \item Quite a few papers on IMR in micromagnetics
   \item But:
     \begin{itemize}
-    \item using simple and inefficient non-linear solvers
     \item no adaptivity
+    \item using simple and inefficient non-linear solvers
     \end{itemize}
-  \end{itemize}
-\end{frame}
+ \end{itemize}
+ \end{frame}
 
 \begin{frame}{Making IMR more efficient}
 
@@ -104,7 +104,7 @@
 \begin{frame}{When do we need implicit (stable) methods?}
 
   \begin{itemize}
-  \item Little research about when implicit methods are needed in micromagnetics
+  \item Little research about when implicit methods are needed in micromagnetics (a.k.a. stiffness)
   \item Some papers say that implicit methods are much more efficient, but others use explicit methods without complaints
   \item Some mixed ideas about where stiffness comes from
   % (precession vs damping timescales? exchange vs magnetostatics propagation
